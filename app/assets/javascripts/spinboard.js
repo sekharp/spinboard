@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 function renderLink(link) {
   $("#latest-links").prepend(
-    "<div class='link' data-id='link" +
+    "<div class='link' id='link" +
     link.id +
     "'><h6>Published on " +
     link.created_at +
@@ -36,6 +36,11 @@ function getLinks() {
     .then(function(links){
       $.each(links, function(index, link){
         renderLink(link);
+        if(link.read === true) {
+          $('#link' + link.id).wrap("<strike></strike>");
+        // } else {
+        //   $('#link' + link.id).unwrap();
+        }
     });
   });
 }
@@ -87,10 +92,6 @@ function changeLinkStatus(id) {
         },
         success: function(link) {
           $('#link-quality' + id).html("Read: " + !status)
-          // if(!status === true) {
-          //   $('#link' + id).append("</strike>"),
-          //   $('#link' + id).prepend("<strike>");
-          // }
         }
       });
     });
