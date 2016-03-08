@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 function renderLink(link) {
   $("#latest-links").prepend(
-    "<div class='link' data-id='" +
+    "<div class='link' data-id='link" +
     link.id +
     "'><h6>Published on " +
     link.created_at +
@@ -85,8 +85,12 @@ function changeLinkStatus(id) {
         data: {
           link: {read: !status}
         },
-        success: function(link){
-          $('#link-quality' + id).html("Read: " + !status);
+        success: function(link) {
+          $('#link-quality' + id).html("Read: " + !status)
+          // if(!status === true) {
+          //   $('#link' + id).append("</strike>"),
+          //   $('#link' + id).prepend("<strike>");
+          // }
         }
       });
     });
