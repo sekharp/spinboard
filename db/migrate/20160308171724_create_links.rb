@@ -3,6 +3,7 @@ class CreateLinks < ActiveRecord::Migration
     create_table :links do |t|
       t.string :title
       t.string :url
+      t.belongs_to :user, index: true
       t.boolean :read, default: false
 
       t.timestamps null: false

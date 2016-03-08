@@ -1,6 +1,5 @@
 $(document).ready(function() {
   getLinks();
-  createLink();
   deleteLink();
   editTitle();
   editUrl();
@@ -45,25 +44,6 @@ function getLinks() {
         //   $('#link' + link.id).unwrap();
         }
     });
-  });
-}
-
-function createLink() {
-  $('#create-link').on('click', function(){
-    var linkTitle  = $('#link-title').val();
-    var linkurl   = $('#link-url').val();
-    var linkParams = {
-      link: {
-        title: linkTitle,
-        url: linkurl
-      }
-    };
-
-    $('#link-title').val('');
-    $('#link-url').val('');
-
-    $.post("api/links.json", linkParams, $(this).serialize())
-      .done(renderLink);
   });
 }
 
