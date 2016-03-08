@@ -16,6 +16,9 @@ class CreateLinkTest < ActionDispatch::IntegrationTest
     fill_in 'link_title', with: 'Taylor Swift Fan Club'
     fill_in 'link_url', with: 'http://www.taylorswift.com'
     click_button 'Create Link'
+
+    assert page.has_content?('Taylor Swift Fan Club')
+    assert page.has_content?('http://www.taylorswift.com')
   end
 
   test 'unauthenticated user cannot visit link index page without redirect to login page' do
