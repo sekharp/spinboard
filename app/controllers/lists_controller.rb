@@ -37,6 +37,8 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    links = Link.where(list_id: params[:id])
+    links.each { |link| link.update_attribute(:list_id, nil) }
     List.destroy(params[:id])
     redirect_to lists_path
   end
