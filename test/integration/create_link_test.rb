@@ -21,6 +21,25 @@ class CreateLinkTest < ActionDispatch::IntegrationTest
     assert page.has_content?('http://www.taylorswift.com')
   end
 
+  test 'authenticated user cannot create a link with an invalid url' do
+    visit root_path
+
+    click_link "Sign Up"
+
+    fill_in "Email", with: "mikedao@gmail.com"
+    fill_in "Password", with: "tswift"
+    fill_in "Password confirmation", with: "tswift"
+    click_button "Create Account"
+
+    assert_equal links_path, current_path
+
+    fill_in 'link_title', with: 'I Love Jack Yeh'
+    fill_in 'link_url', with: '$$$JACK<3%%%'
+    click_button 'Create Link'
+
+    assert page.has_content?('Url is invalid')
+  end
+
   test 'unauthenticated user cannot visit link index page without redirect to login page' do
     visit links_path
 
