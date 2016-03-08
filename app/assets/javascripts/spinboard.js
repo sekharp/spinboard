@@ -174,6 +174,7 @@ function searchStatus() {
 }
 
 function alphabetizeSort() {
-  // on click
-  $("#latest-links").children()
+  $('#link-sort-list').on('click', function() {
+    console.log($("#latest-links"))
+  });
 }
