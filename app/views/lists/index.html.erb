@@ -1,0 +1,12 @@
+<div class="list-form-group">
+  <%= flash[:error] %>
+  <%= form_for(@list) do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br><br>
+    <%= f.submit "Create List" %>
+  <% end %>
+</div><br>
+
+<% @lists.each do |list| %>
+  <%= list.name %><br><br>
+<% end %>
