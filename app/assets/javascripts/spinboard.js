@@ -2,13 +2,13 @@ $(document).ready(function() {
   getLinks();
   createLink();
   deleteLink();
-  // editTitle();
-  // editUrl();
+  editTitle();
+  editUrl();
 });
 
 function renderLink(link) {
   $("#latest-links").prepend(
-    "<div class='link' id='link" +
+    "<div class='link' data-id='" +
     link.id +
     "'><h6>Published on " +
     link.created_at +
@@ -37,7 +37,7 @@ function getLinks() {
       $.each(links, function(index, link){
         renderLink(link);
         if(link.read === true) {
-          $('#link' + link.id).wrap("<strike></strike>");
+          $("[data-id=" + link.id + "]").wrap("<strike></strike>");
         // } else {
         //   $('#link' + link.id).unwrap();
         }
@@ -95,5 +95,51 @@ function changeLinkStatus(id) {
         }
       });
     });
+  });
+}
+
+function editTitle() {
+  $('#latest-links').delegate('#link-title', 'keydown', function(event) {
+    if(event.which == 13 || event.keyCode == 13){
+      var $title = event.currentTarget.textContent;
+      var $id = $(this).closest('.link').attr('data-id');
+      var params = {
+        link: {
+          title: $title,
+        }
+      };
+      event.preventDefault();
+      this.blur();
+      $.ajax({
+        type: 'PUT',
+        url: '/api/links/' + $id + '.json',
+        data: params,
+        success: function(link){
+        }
+      });
+    }
+  });
+}
+
+function editUrl() {
+  $('#latest-links').delegate('#link-url', 'keydown', function(event) {
+    if(event.which == 13 || event.keyCode == 13){
+      var $url = event.currentTarget.textContent;
+      var $id = $(this).closest('.link').attr('data-id');
+      var params = {
+        link: {
+          url: $url,
+        }
+      };
+      event.preventDefault();
+      this.blur();
+      $.ajax({
+        type: 'PUT',
+        url: '/api/links/' + $id + '.json',
+        data: params,
+        success: function(link){
+        }
+      });
+    }
   });
 }
