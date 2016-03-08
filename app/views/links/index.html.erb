@@ -6,11 +6,13 @@
   <div class="col-sm-8">
     <div class="link-form-group">
       <%= flash[:error] %>
-      <%= form_for(@link) do |f| %>
+      <%= form_for(@link, url: {action: "create"}) do |f| %>
         <%= f.label :title %><br>
         <%= f.text_field :title %><br><br>
         <%= f.label :url %><br>
         <%= f.text_field :url %><br><br>
+        <%= f.label :lists %><br>
+        <%= f.collection_select :list_id, @lists, :id, :name, { prompt: "Choose a list" }, class: "browser-default" %>
         <%= f.submit "Create Link" %>
       <% end %>
     </div><br>
@@ -47,6 +49,8 @@
           <p><b id='link-title' contentEditable='true'><%= link.title %></b>
           <p id='link-url' contentEditable='true'><%= link.url %></p>
           <p class='link-quality' id='link-quality<%= link.id %>'>Read: <%= link.read %></p>
+          <p>List: <%= link.list ? link.list.name : "None" %></p>
+          <!-- <%= collection_select(:link, :list_id, List.all, :id, :name, { prompt: "Choose a list" }, class: "browser-default") %><br><br> -->
 
           <% if link.read %>
             </strike>

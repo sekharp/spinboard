@@ -4,6 +4,7 @@ class LinksController < ApplicationController
   def index
     @link = Link.new
     @links = current_user.links
+    @lists = current_user.lists
   end
 
   def create
@@ -26,6 +27,6 @@ class LinksController < ApplicationController
   end
 
   def link_params
-    params.require(:link).permit(:title, :url, :user_id, :read)
+    params.require(:link).permit(:title, :url, :user_id, :list_id, :read)
   end
 end
