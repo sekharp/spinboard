@@ -28,7 +28,7 @@ function renderLink(link) {
     "<button id='delete-link' name='button-fetch' class='btn btn-default btn-xs'>Delete</button>" +
     "</div>"
   );
-    // changeLinkStatus(link.id);
+    changeLinkStatus(link.id);
 }
 
 function getLinks() {
@@ -69,6 +69,26 @@ function deleteLink() {
       success: function(response) {
         $link.remove();
       }
+    });
+  });
+}
+
+function changeLinkStatus(id) {
+  $('#change-link-status' + id).on('click', function(){
+    event.preventDefault();
+
+    $.getJSON('/api/links/' + id, function(link){
+      var status = link.read
+      $.ajax({
+        type: 'PUT',
+        url: '/api/links/' + id + '.json',
+        data: {
+          link: {read: !status}
+        },
+        success: function(link){
+          $('#link-quality' + id).html("Read: " + !status);
+        }
+      });
     });
   });
 }
