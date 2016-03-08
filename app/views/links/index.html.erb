@@ -1,2 +1,30 @@
-<h1>Link Index (User Show Page)</h1> <br><br>
-<%= link_to "Logout", logout_path , method: :delete %> <br><br>
+<h1>Link Index</h1><br>
+<%= link_to "Logout", logout_path , method: :delete %> <br><br><br>
+
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="link-form-group">
+      <h3>Link Title: </h3><input class="form-control" type="text" id="link-title">
+      <h3>Link URL: </h3><input class="form-control" type="text" id="link-url">
+    </div><br>
+    <input class="btn btn-default pull-right" id="create-link" type="button" name="submit" value="Create Link">
+  </div>
+</div><br><br>
+
+<h1>Link Search</h1>
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" id="filter" placeholder="Search">
+  </div>
+</form><br><br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2"></div>
+      <h1>Latest Links</h1>
+      <div id="latest-links">
+      </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div>
