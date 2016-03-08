@@ -15,9 +15,21 @@ gem 'responders'
 group :development, :test do
   gem 'pry-rails'
   gem 'byebug'
+  gem 'better_errors'
+  gem 'teaspoon-mocha'
+  gem 'binding_of_caller'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :test do
+  gem 'simplecov'
+  gem 'minitest-reporters'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
