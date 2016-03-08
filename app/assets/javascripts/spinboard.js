@@ -6,6 +6,7 @@ $(document).ready(function() {
   editUrl();
   searchLinks();
   searchStatus();
+  alphabetizeSort();
 });
 
 function renderLink(link) {
@@ -170,4 +171,9 @@ function searchStatus() {
 			}
 		});
 	});
+}
+
+function alphabetizeSort() {
+  // on click
+  $("#latest-links").children()
 }
