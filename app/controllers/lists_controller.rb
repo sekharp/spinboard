@@ -4,6 +4,7 @@ class ListsController < ApplicationController
   def index
     @list = List.new
     @lists = current_user.lists
+    @unlisted_links = current_user.links.where(list_id: nil)
   end
 
   def create
@@ -15,6 +16,29 @@ class ListsController < ApplicationController
       flash[:error] = @list.errors.full_messages.join(', ')
       redirect_to lists_path
     end
+  end
+
+  def show
+    @list = List.find(params[:id])
+  end
+
+  def edit
+    @list = List.find(params[:id])
+  end
+
+  def update
+    @list = List.find(params[:id])
+    if @list.update(list_params)
+      redirect_to @list
+    else
+      flash.now[:errors] = @list.errors.full_messages(", ")
+      render :edit
+    end
+  end
+
+  def destroy
+    List.destroy(params[:id])
+    redirect_to lists_path
   end
 
   private

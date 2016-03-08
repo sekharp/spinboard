@@ -1,27 +1,7 @@
-<%= link_to "Links", links_path %> <br><br><br>
-<%= link_to "Logout", logout_path , method: :delete %> <br><br><br>
+<h1><%= @list %></h1><br><br>
 
-<h2>Create a New List!</h2>
-<div class="list-form-group">
-  <%= flash[:error] %>
-  <%= form_for(@list) do |f| %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br><br>
-    <%= f.submit "Create List" %>
-  <% end %>
-</div><br><br>
-
-<% @lists.each do |list| %>
-  <li>
-    <%= link_to list.name, list %>
-    <%= link_to "Edit", edit_list_path(list) %>
-    <%= link_to "Delete", list, method: :delete %>
-  </li><br><br>
-<% end %>
-
-<h2>Links with no List</h2>
 <div id="latest-links">
-  <% @unlisted_links.each do |link| %>
+  <% @list.links.each do |link| %>
     <% if link.read %>
       <strike>
     <% end %>
