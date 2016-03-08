@@ -4,6 +4,8 @@ $(document).ready(function() {
   deleteLink();
   editTitle();
   editUrl();
+  searchLinks();
+  searchStatus();
 });
 
 function renderLink(link) {
@@ -17,7 +19,7 @@ function renderLink(link) {
     link.title +
     "</b><p id='link-url' contentEditable='true'>" +
     link.url +
-    "</p><p id='link-quality" +
+    "</p><p class='link-quality' id='link-quality" +
     link.id +
     "'>Read: " +
     link.read +
@@ -142,4 +144,30 @@ function editUrl() {
       });
     }
   });
+}
+
+function searchLinks() {
+  $("#filter").keyup(function(){
+		var filter = $(this).val();
+		$("#latest-links").children().each(function(){
+			if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+				$(this).fadeOut();
+			} else {
+				$(this).fadeIn();
+			}
+		});
+	});
+}
+
+function searchStatus() {
+  $("#status-filter").keyup(function(){
+		var filter = $(this).val();
+		$(".link-quality").each(function(){
+			if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+				$(this).parent().fadeOut();
+			} else {
+				$(this).parent().fadeIn();
+			}
+		});
+	});
 }
