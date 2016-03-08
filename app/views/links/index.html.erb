@@ -5,6 +5,7 @@
   <div class="col-sm-2"></div>
   <div class="col-sm-8">
     <div class="link-form-group">
+      <%= flash[:error] %>
       <%= form_for(@link) do |f| %>
         <%= f.label :title %><br>
         <%= f.text_field :title %><br><br>

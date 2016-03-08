@@ -12,7 +12,8 @@ class LinksController < ApplicationController
     if @link.save
       redirect_to links_path
     else
-      render :new
+      flash[:error] = @link.errors.full_messages.join(', ')
+      redirect_to links_path
     end
   end
 
