@@ -1,6 +1,9 @@
 $(document).ready(function() {
   getLinks();
   createLink();
+  deleteLink();
+  // editTitle();
+  // editUrl();
 });
 
 function renderLink(link) {
@@ -53,5 +56,19 @@ function createLink() {
 
     $.post("api/links.json", linkParams, $(this).serialize())
       .done(renderLink);
+  });
+}
+
+function deleteLink() {
+  $('#latest-links').delegate('#delete-link', 'click', function() {
+    var $link = $(this).closest('.link');
+
+    $.ajax({
+      type: 'DELETE',
+      url: 'api/links/' + $link.attr('data-id') + '.json',
+      success: function(response) {
+        $link.remove();
+      }
+    });
   });
 }
