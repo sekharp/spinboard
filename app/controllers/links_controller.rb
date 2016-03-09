@@ -28,7 +28,7 @@ class LinksController < ApplicationController
     if @link.update(link_params)
       redirect_to links_path
     else
-      render :edit
+      redirect_to edit_link_path(@link)
     end
   end
 
