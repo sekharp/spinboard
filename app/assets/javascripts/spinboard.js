@@ -48,7 +48,7 @@ function changeStatus(id) {
         }
       });
     });
-  });  
+  });
 }
 
 function editTitle() {
