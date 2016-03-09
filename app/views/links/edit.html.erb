@@ -1,0 +1,11 @@
+<h1>Edit a Link</h1>
+
+<%= form_for(@link) do |f| %>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br><br>
+  <%= f.label :url %><br>
+  <%= f.text_field :url %><br><br>
+  <%= f.label :lists %><br>
+  <%= f.collection_select :list_id, @lists, :id, :name, { prompt: "Choose a list" }, class: "browser-default" %>
+  <%= f.submit "Edit Link" %>
+<% end %>

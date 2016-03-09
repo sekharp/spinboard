@@ -31,7 +31,6 @@ class ListsController < ApplicationController
     if @list.update(list_params)
       redirect_to @list
     else
-      flash.now[:errors] = @list.errors.full_messages(", ")
       render :edit
     end
   end

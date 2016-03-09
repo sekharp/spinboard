@@ -18,6 +18,20 @@ class LinksController < ApplicationController
     end
   end
 
+  def edit
+    @link = Link.find(params[:id])
+    @lists = current_user.lists
+  end
+
+  def update
+    @link = Link.find(params[:id])
+    if @link.update(link_params)
+      redirect_to links_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def require_login

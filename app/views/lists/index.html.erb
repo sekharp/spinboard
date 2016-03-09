@@ -31,6 +31,7 @@
     <p><b id='link-title' contentEditable='true'><%= link.title %></b>
     <p id='link-url' contentEditable='true'><%= link.url %></p>
     <p class='link-quality' id='link-quality<%= link.id %>'>Read: <%= link.read %></p>
+    <p>List: <%= link.list ? link.list.name : "None" %></p>
 
     <% if link.read %>
       </strike>
